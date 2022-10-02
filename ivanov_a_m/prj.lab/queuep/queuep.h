@@ -4,8 +4,10 @@
 class QueueP {
 public:
 	QueueP() = default;
-	QueueP(const QueueP& copy) = default;
+	QueueP(const QueueP& copy);
+	QueueP(QueueP&& right) noexcept;
 	QueueP& operator=(const QueueP& right);
+	QueueP& operator=(QueueP&& right) noexcept;
 	~QueueP();
 	void push(const int& elem);
 	void pop();
@@ -17,7 +19,7 @@ private:
 		Node() = default;
 		Node(const int& elem);
 		Node(const int& elem, std::unique_ptr<Node>& next);
-		~Node() = default;
+		~Node();
 		int value;
 		std::unique_ptr<Node> next_node;
 
